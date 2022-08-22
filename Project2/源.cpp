@@ -57,11 +57,20 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
     MSG msg;
 
-    while(GetMessage(&msg,NULL,0,0))
-    {
-        TranslateMessage(&msg);
+    BOOL bRet;
 
-        DispatchMessage(&msg);
+    while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0)
+    {
+        if (bRet == -1)
+        {
+            MessageBox(NULL, TEXT("some errors happen here, terminate this app"), TEXT(""), 0);
+            return -1;
+        }
+        else
+        {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
     }
 
     return msg.wParam;
