@@ -57,8 +57,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
     MSG msg;
 
+    // check this: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getmessage
+    // GetMessage has three potential return value zero/non-zero/-1
     BOOL bRet;
-
     while ((bRet = GetMessage(&msg, NULL, 0, 0)) != 0)
     {
         if (bRet == -1)
